@@ -1,0 +1,413 @@
+local whitelist = {"v3nzl", "ohma4life", "Soccer_GamingOnYT"}
+
+
+local function isPlayerWhitelisted(player)
+    return table.find(whitelist, player.Name) ~= nil
+end
+
+local function onPlayerAdded(player)
+    if isPlayerWhitelisted(player) then
+
+local Rayfield = loadstring(game:HttpGet('https://pastebin.com/raw/ifLJ3CTz'))()
+local Window = Rayfield:CreateWindow({
+    Name = "Hexez Hub",
+    LoadingTitle = "Hexez HUB Interface Suite",
+    LoadingSubtitle = "By Ohma & Bishop",
+    ConfigurationSaving = {
+       Enabled = false,
+       FolderName = nil, -- Create a custom folder for your hub/game
+       FileName = "Hexez"
+    },
+    Discord = {
+       Enabled = false,
+       Invite = "yWwUGMUMXK", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+       Title = "Hexez Hub",
+       Subtitle = "Hexez's Key System",
+       Note = "Join the discord (https://discord.gg/yWwUGMUMXK)",
+       FileName = "HexezKey",
+       SaveKey = true,
+       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+       Key = "venzbishopohma"
+    }
+ })
+ local Tab1 = Window:CreateTab("Main", 7733960981)
+ local Tab2 = Window:CreateTab("Player", 7743871480)
+ local Tab5 = Window:CreateTab("Teleports", 7733992789)
+ local Tab8 = Window:CreateTab("Trolling", 7734058599)
+ local Tab3 = Window:CreateTab("Misc", 7733960981)
+ local Tab4 = Window:CreateTab("Credits", 7743877573) -- Title, Image
+ local Tab6 = Window:CreateTab("Configs", 7734053495) -- Title, Image
+ --TROLLING TAB FUNCTIONS
+ local Noclip = nil
+local Clip = nil
+
+function noclip()
+    Clip = false
+    local function Nocl()
+        if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+            for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+                    v.CanCollide = false
+                end
+            end
+        end
+        wait(0.21) -- basic optimization
+    end
+    Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+    if Noclip then Noclip:Disconnect() end
+    Clip = true
+    if game.Players.LocalPlayer.Character ~= nil then
+        for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v:IsA('BasePart') and not v.CanCollide and v.Name ~= floatName then
+                v.CanCollide = true
+            end
+        end
+    end
+end
+
+local Toggle = Tab8:CreateToggle({
+   Name = "No Freeze",
+   CurrentValue = false,
+   Flag = "NoclipToggle",
+   Callback = function(Value)
+       if Value then
+           noclip()
+       else
+           clip()
+       end
+   end,
+})
+
+local Button = Tab8:CreateButton({
+   Name = "Hoopz Troll",
+   Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/yGGUpjZi'))()
+   end,
+})
+ --MAIN TAB FUNCTIONS
+local Button = Tab1:CreateButton({
+   Name = "Aimbot",
+   Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/2txFaBRK'))()
+   end,
+})
+local Button = Tab1:CreateButton({
+   Name = "Auto Power",
+   Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/rcURy8dj'))()
+   end,
+})
+local Button = Tab1:CreateButton({
+   Name = "Auto Guard (U Keybind)",
+   Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/c4ZmhyWp'))()
+   end,
+})
+
+ --PLAYER TAB FUNCTIONS
+ local WalkSpeedSlider = Tab2:CreateSlider({
+   Name = "Walk Speed",
+   Range = {0, 40},
+   Increment = 1,
+   CurrentValue = 16,
+   Flag = "WalkSpeedSlider",
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+
+local JumpPowerSlider = Tab2:CreateSlider({
+   Name = "Jump Power",
+   Range = {0, 80},
+   Increment = 1,
+   CurrentValue = 50,
+   Flag = "JumpPowerSlider",
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
+})
+-- Define the function to create a toggle
+local function CreateToggle(Name, CurrentValue, Callback)
+    local Toggle = Tab2:CreateToggle({
+        Name = Name,
+        CurrentValue = CurrentValue,
+        Flag = "Toggle1",
+        Callback = Callback,
+    })
+    return Toggle
+end
+
+-- Create the toggle
+local SilentWalkSpeedToggle = CreateToggle("Silent WalkSpeed", false, function(Value)
+    if Value then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 19
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    end
+end)
+-- Define the function to create a toggle
+local function CreateToggle(Name, CurrentValue, Callback)
+local Toggle = Tab2:CreateToggle({
+Name = Name,
+CurrentValue = CurrentValue,
+Flag = "Toggle1",
+Callback = Callback,
+})
+return Toggle
+end
+
+-- Create the toggle
+local SilentJumpPowerToggle = CreateToggle("Silent JumpPower", false, function(Value)
+if Value then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 58
+else
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+end
+end)
+-- Define the function to create a toggle
+local function CreateToggle(Name, CurrentValue, Callback)
+local Toggle = Tab2:CreateToggle({
+Name = Name,
+CurrentValue = CurrentValue,
+Flag = "Toggle1",
+Callback = Callback,
+})
+return Toggle
+end
+
+-- Create the toggle
+local InfJumpToggle = CreateToggle("Infinite Jump", false, function(Value)
+local Player = game.Players.LocalPlayer
+local Humanoid = Player.Character:FindFirstChildOfClass("Humanoid")
+if Value then
+local Connection
+Connection = game:GetService("UserInputService").JumpRequest:Connect(function()
+Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+end)
+InfJumpConnection = Connection
+else
+InfJumpConnection:Disconnect()
+InfJumpConnection = nil
+end
+end)
+local Noclip = nil
+local Clip = nil
+
+function noclip()
+    Clip = false
+    local function Nocl()
+        if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+            for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+                    v.CanCollide = false
+                end
+            end
+        end
+        wait(0.21) -- basic optimization
+    end
+    Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+    if Noclip then Noclip:Disconnect() end
+    Clip = true
+    if game.Players.LocalPlayer.Character ~= nil then
+        for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v:IsA('BasePart') and not v.CanCollide and v.Name ~= floatName then
+                v.CanCollide = true
+            end
+        end
+    end
+end
+
+local Toggle = Tab2:CreateToggle({
+   Name = "Noclip",
+   CurrentValue = false,
+   Flag = "NoclipToggle",
+   Callback = function(Value)
+       if Value then
+           noclip()
+       else
+           clip()
+       end
+   end,
+})
+--CONFIGS TAB FUNCTIONS
+--TELEPORTS TAB FUNCTIONS
+local Button = Tab5:CreateButton({
+   Name = "Daily Spin",
+   Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(647.737366, 40.4358292, -657.728271, -0.603922963, 2.63464575e-08, 0.797042668, -3.58003263e-08, 1, -6.01813426e-08, -0.797042668, -6.48792806e-08, -0.603922963) --Wheel
+   end,
+})
+
+local Button = Tab5:CreateButton({
+   Name = "City",
+   Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-148.774384, 56.8554192, -736.259216, -0.998000145, 7.77402329e-06, 0.0632121265, 1.21694669e-07, 1, -0.000121061974, -0.0632121265, -0.000120812176, -0.998000145) --city
+   end,
+})
+
+local Button = Tab5:CreateButton({
+   Name = "Town",
+   Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(390.328796, 52.0818481, -231.617752, -1, 4.87474949e-09, -0.000235414307, 4.88769869e-09, 1, -5.50054793e-08, 0.000235414307, -5.50066304e-08, -1) --town
+   end,
+})
+local Button = Tab5:CreateButton({
+   Name = "Practice - Gamepass Required",
+   Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(390.865936, 52.0843468, -1238.62793, 0.0387208685, 7.90164165e-08, -0.999250054, -2.91865128e-08, 1, 7.79447404e-08, 0.999250054, 2.61465356e-08, 0.0387208685) --Practice
+   end,
+})
+local Button = Tab5:CreateButton({
+   Name = "Lounge",
+   Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(672.342163, 41.9734344, -680.651123, 0.156959742, -2.4655769e-08, 0.987604976, -3.75819242e-09, 1, 2.55625014e-08, -0.987604976, -7.72389352e-09, 0.156959742) --town
+   end,
+})
+
+
+ --MISC TAB FUNCTIONS (TAB3)
+local Button = Tab3:CreateButton({
+   Name = "Admin",
+   Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+ --CREDITS TAB FUNCTIONS
+ local Section = Tab4:CreateSection("Credits")
+ local Button = Tab4:CreateButton({
+   Name = "Copy Discord Invite!",
+   Callback = function()
+setclipboard("https://discord.gg/56QAmJ3T")
+    end,
+})
+ local Button = Tab4:CreateButton({
+   Name = "Copyable - Ohma#8375 || Owner",
+   Callback = function()
+setclipboard("Ohma#8375")
+    end,
+})
+local Button = Tab4:CreateButton({
+   Name = "Copyable - Bishop#2082 || Dev",
+   Callback = function()
+setclipboard("Bishop#2082")
+    end,
+})
+local Button = Tab4:CreateButton({
+   Name = "Copyable - eovqx#5469 || Dev",
+   Callback = function()
+setclipboard("eovqx#5469")
+    end,
+})
+local Button = Tab4:CreateButton({
+   Name = "Copyable - venz#4064 || Adv",
+   Callback = function()
+setclipboard("venz#4064")
+    end,
+})
+local Label = Tab6:CreateLabel("                                 ⬇  Currently Not Working  ⬇")
+
+local Input = Tab6:CreateInput({
+   Name = "Save Config",
+   PlaceholderText = "Config Name",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+   end,
+})
+local Button = Tab6:CreateButton({
+   Name = "Save Config",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Input = Tab6:CreateInput({
+   Name = "Load Config",
+   PlaceholderText = "Config Name",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+   end,
+})
+local Button = Tab6:CreateButton({
+   Name = "Load Config",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Label = Tab6:CreateLabel("                                 ⬇  Confused? Read Below.  ⬇")
+local Paragraph = Tab6:CreateParagraph({Title = "                                      How To Use Configs", Content = "If You Want To Save Your Config, Enter The Name, Then Press The Save Config Button, Then Next Time You Use The Script Enter The Config Name You Saved It As In Load Config, Then Press The Load Config Button. Then You Are Done, It's That Simple! GL AND HF!!!"})
+ local Section = Tab:CreateSection("Main Tab")
+ Rayfield:Notify({
+    Title = "🌀 Hexez Hub 👽",
+    Content = "                                                                 Thx 4 Buying, Pls Share!",
+    Duration = 6.5,
+    Actions = { -- Notification Buttons
+       Ignore = {
+          Name = "Okay!",
+          Callback = function()
+          print("The user tapped Okay!")
+       end
+    },
+ },
+ })
+end
+end
+
+
+-- Check all current players
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    onPlayerAdded(player)
+end
+
+-- Connect the function to the PlayerAdded event for new players
+game.Players.PlayerAdded:Connect(onPlayerAdded)
+
+    function Notify(titletxt, text, time)
+    local GUI = Instance.new("ScreenGui")
+    local Main = Instance.new("Frame", GUI)
+    local title = Instance.new("TextLabel", Main)
+    local message = Instance.new("TextLabel", Main)
+    GUI.Name = "NotificationOof"
+    GUI.Parent = game.CoreGui
+    Main.Name = "MainFrame"
+    Main.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(0.5, -165, 0.5, -50) -- center position
+    Main.Size = UDim2.new(0, 330, 0, 100)
+ 
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.BackgroundTransparency = 0.89999997615814
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.Font = Enum.Font.SourceSansSemibold
+    title.Text = titletxt
+    title.TextColor3 = Color3.new(87, 51, 138) --- Color to liking
+    title.TextSize = 25  --- Size to liking
+ 
+    message.BackgroundColor3 = Color3.new(0, 0, 0)
+    message.BackgroundTransparency = 1
+    message.Position = UDim2.new(0, 0, 0, 30)
+    message.Size = UDim2.new(1, 0, 1, -30)
+    message.Font = Enum.Font.SourceSans
+    message.Text = text
+    message.TextColor3 = Color3.new(87, 51, 138)  --- color to liking
+    message.TextSize = 15   --- Size to liking
+ 
+    wait(0.1)
+    Main:TweenPosition(UDim2.new(0.5, -165, 0.5, -50), "Out", "Sine", 0.5) -- center position
+    wait(time)
+    Main:TweenPosition(UDim2.new(1, 5, 0, 50), "Out", "Sine", 0.5)
+    wait(10.0)
+    GUI:Destroy();
+end
+ 
+Notify("Hexez Hub", "You Are Not Whitelist, Help: https://discord.gg/56QAmJ3T ", 5)
